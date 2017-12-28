@@ -1,0 +1,13 @@
+<h1>Welcome to the League of Cool Kickball Professionals!</h1>
+	<h2>Here you will find information on all of the LCKP Teams and Players</h2>
+
+	<h1>LCKP Teams:</h1>
+	<% @teams.each do |team| %>
+	  <li>
+	  <a href="/teams/<%= team.team_name %>">
+	    <%= team.team_name %>
+	  </a>
+	  </li>
+	<% end %>
+
+	<h4><a href="/positions">Click Here for Team Positions</></h4>

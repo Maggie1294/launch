@@ -1,0 +1,25 @@
+<!-- Put your News Aggregator articles.erb code here -->
+<html lang="en">
+  <head>
+    <title>Articles</title>
+  </head>
+
+  <body>
+    <h2>Articles</h2>
+    <h3>Submitted Articles</h3>
+
+    <ul>
+      <% @articles.each do |article| %>
+        <li>
+          <a href="<%= article["url"] %>">
+        <%= article["title"] %></a>
+      </li>
+      <% end %>
+    </ul>
+
+
+
+    <a href="/articles/new">Submit a new article!</a>
+
+  </body>
+</html>

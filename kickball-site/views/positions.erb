@@ -1,0 +1,11 @@
+<h1> Kickball Positions </h1>
+
+	<% @positions.each do |position| %>
+	<ul>
+	  <li>
+	    <a href="/positions/<%= position %>">
+	      <%= position %>
+	    </a>
+	  </li>
+	</ul>
+	<% end %>

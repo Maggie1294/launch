@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>All Actors</title>
+    <link rel="stylesheet" href="/home.css">
+  </head>
+
+  <body>
+    <h2>All Actors</h2>
+
+    <% @all_actors = db_connection { |conn| conn.exec("SELECT * FROM actors ORDER BY name ASC") } %>
+      <% db_connection do |conn| %>
+      <% @all_actors.each do |actor| %>
+        <p><a href="/actors/<%= actor["id"] %>"><%= actor["name"] %></a></p>
+       <% end %>
+       <% end %>
+  </body>
+  </html>

@@ -1,0 +1,11 @@
+<h1> <%= @grocery_info[0]["name"] %> </h1>
+
+<h2> <%= @grocery_info[0]["name"] %> Comments:</h2>
+
+<ul>
+  <% @grocery_info.each do |item| %>
+  <li>
+    <%= item['body'] %>
+  </li>
+  <% end %>
+</ul>

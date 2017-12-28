@@ -1,0 +1,26 @@
+body {
+  background-color: #fff;
+}
+h1 {
+    font: italic bold 50px serif;
+    color:#4682b4;
+}
+h2 {
+    font: normal 40px serif;
+    color:#67412;
+}
+h3 {
+    font: bold 30px serif;
+    color:#f08080;
+}
+h4 {
+    font: italic normal 25px serif;
+    color:#1ba39c;
+}
+a {
+    color:#1e8bc3;
+}
+p {
+    font: italic normal 16px serif;
+    color:#ab82ff;
+}

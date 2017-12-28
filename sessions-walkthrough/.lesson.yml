@@ -1,0 +1,7 @@
+---
+title: "Sessions Walkthrough"
+type: "exercise"
+description: "Walkthrough of how to build a basic user ID system that stores information using sessions"
+tags: "sinatra, sessions, cookies"
+ignore:
+- "sessions-walkthrough.md"

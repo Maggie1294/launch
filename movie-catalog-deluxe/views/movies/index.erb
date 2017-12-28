@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+	<html lang="en">
+	  <head>
+	    <title>All Movies</title>
+	    <link rel="stylesheet" href="/home.css">
+	  </head>
+
+	  <body>
+	    <h1>All Movies</h1>
+
+	    <table>
+	      <tr>
+	        <th>Movie Title</th>
+	        <th>Year Released</th>
+	        <th>Rating</th>
+	        <th>Genre</th>
+	        <th>Production Studio</th>
+	      </tr>
+	      <tr>
+
+	        <% @movie_info = db_connection { |conn| conn.exec("SELECT movies.id, movies.title, movies.year, movies.rating, genres.name AS genre, studios.name AS studio FROM movies JOIN genres ON movies.genre_id = genres.id JOIN studios ON movies.studio_id = studios.id ORDER BY movies.title") } %>
+	          <% db_connection do |conn| %>
+	            <% @movie_info.each do |movie| %>
+	              <td><a href="/movies/<%= movie["id"] %>"><%= movie["title"] %></a></td>
+	              <td><%= movie["year"] %></td>
+	              <td><%= movie["rating"] %></td>
+	              <td><%= movie["genre"] %></td>
+	              <td><%= movie["studio"] %></td>
+	            </tr>
+	          <% end %>
+	        <% end %>
+	      </table>
+
+	  </body>
+	</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>Movie Info</title>
+	    <link rel="stylesheet" href="/home.css">
+	  </head>
+
+	  <body>
+	    <% movie_id = params[:id] %>
+	    <% @movie_info = db_connection { |conn| conn.exec("SELECT movies.title, movies.year, movies.rating, genres.name AS genre, studios.name AS studio FROM movies LEFT OUTER JOIN genres ON movies.genre_id = genres.id LEFT OUTER JOIN studios ON movies.studio_id = studios.id WHERE movies.id = '#{movie_id}'") } %>
+	    <% @movie = db_connection { |conn| conn.exec("SELECT title FROM movies WHERE movies.id = '#{movie_id}'") } %>
+
+	    <h1>
+	      <% @movie.each do |info| %>
+	        <%= info["title"] %>
+	      <% end %>
+	    </h1>
+
+	    <% @movie_info.each do |movie| %>
+	      <p><%= movie["synopsis"] %></p>
+	        <ul>
+	          <li><strong><%= "Genre:  "%></strong><%= movie["genre"] %></li>
+	          <li><strong><%= "Year:  "%></strong><%= movie["year"] %></li>
+	          <li><strong><%= "Rating:  "%></strong><%= movie["rating"] %></li>
+	          <li><strong><%= "Production Studio:  "%></strong><%= movie["studio"] %></li>
+	        </ul>
+	      <% end %>
+
+	      <h3><%= "Cast Members" %></h3>
+	      <table>
+	        <tr>
+	          <th>Actor Name</th>
+	          <th>Character</th>
+	        </tr>
+	        <tr>
+	          <% @cast_members = db_connection { |conn| conn.exec("SELECT actors.name AS name, actors.id, character FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id WHERE movies.id = '#{movie_id}'") } %>
+	          <% @cast_members.each do |actor| %>
+	          <td><a href="/actors/<%= actor["id"] %>"><%= actor["name"] %></a></td>
+	          <td><%= actor["character"] %></td>
+	        </tr>
+	        <% end %>
+	      </table>
+
+	    <br>
+	    <a href="/movies">Back To All Movies</a>
+	  </body>
+	</html>

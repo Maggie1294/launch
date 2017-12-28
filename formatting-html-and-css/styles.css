@@ -1,0 +1,43 @@
+body {
+  background: #F6F6EF;
+  font: 10px Sans-Serif;
+
+}
+
+header {
+  background: #FD6620;
+  padding: 10px;
+
+}
+
+/*h3 {
+  /*position: relative;*/
+  /*margin-left: 0;
+
+}
+
+img {
+  max-width: 250px;
+  display:inline-block;
+}*/
+
+
+
+.title {
+  font: bold 11px/30px Georgia, Times, serif;
+  color: #fff;
+  float: left;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.subTitle {
+  font: bold;
+  margin-left: 50%;
+  float: left;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+}

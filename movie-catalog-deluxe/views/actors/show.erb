@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>Actor Info</title>
+	    <link rel="stylesheet" href="/home.css">
+	  </head>
+
+	  <body>
+	    <% actors_id = params[:id] %>
+	    <% @actor_info = db_connection { |conn| conn.exec("SELECT movies.title, movies.year, genres.name, cast_members.character FROM cast_members JOIN actors ON cast_members.actor_id = actors.id JOIN movies ON cast_members.movie_id = movies.id JOIN genres ON movies.genre_id = genres.id WHERE actors.id = '#{actors_id}' ORDER BY movies.title") } %>
+	    <% @actor = db_connection { |conn| conn.exec("SELECT name FROM actors WHERE actors.id = '#{actors_id}'") } %>
+
+	    <h1>
+	      <% @actor.each do |info| %>
+	        <%= info["name"] %>
+	      <% end %>
+	    </h1>
+
+	    <table>
+	      <tr>
+	        <th>Movie Title</th>
+	        <th>Character Played</th>
+	        <th>Year Released</th>
+	        <th>Genre</th>
+	      </tr>
+	      <tr>
+	        <% db_connection do |conn| %>
+	          <% @actor_info.each do |movie| %>
+	            <td><%= movie["title"] %></td>
+	            <td><%= movie["character"] %></td>
+	            <td><%= movie["year"] %></td>
+	            <td><%= movie["name"] %></td>
+	          </tr>
+	        <% end %>
+	      <% end %>
+	    </table>
+	    <br>
+	    <a href="/actors">Back To All Actors</a>
+	    <br>
+	    <a href="/movies">Back To All Movies</a>
+	  </body>
+	</html>

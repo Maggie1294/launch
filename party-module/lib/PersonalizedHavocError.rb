@@ -1,0 +1,3 @@
+
+class PersonalizedHavocError < StandardError
+end
